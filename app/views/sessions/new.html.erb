@@ -1,0 +1,9 @@
+<%= link_to 'Login with google', @oauth2_url %>
+
+<% if @name %>
+  <p><%= @name %></p>
+<% end %>
+
+<% if @email %>
+  <p><%= @email %></p>
+<% end %>

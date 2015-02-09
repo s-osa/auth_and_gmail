@@ -41,6 +41,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.0)
+    email_validator (1.4.0)
+      activemodel
     erubis (2.7.0)
     execjs (2.2.2)
     extlib (0.9.16)
@@ -143,6 +145,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
+  email_validator
   google-api-client
   jbuilder (~> 2.0)
   jquery-rails
