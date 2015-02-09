@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209014237) do
+ActiveRecord::Schema.define(version: 20150209015005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "users", primary_key: "uuid", force: true do |t|
+    t.text "email",         null: false
+    t.text "name",          null: false
+    t.text "access_token",  null: false
+    t.text "refresh_token", null: false
+  end
+
+  add_index "users", ["access_token"], name: "users_access_token_key", unique: true, using: :btree
+  add_index "users", ["email"], name: "users_email_key", unique: true, using: :btree
+  add_index "users", ["name"], name: "users_name_key", unique: true, using: :btree
+  add_index "users", ["refresh_token"], name: "users_refresh_token_key", unique: true, using: :btree
 
 end

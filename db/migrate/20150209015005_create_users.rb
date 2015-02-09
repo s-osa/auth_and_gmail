@@ -3,10 +3,10 @@ class CreateUsers < ActiveRecord::Migration
     execute <<-SQL.strip_heredoc
       CREATE TABLE users(
         uuid uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
-        email text NOT NULL UNIQUE,
-        name text NOT NULL UNIQUE,
-        created_at timestamp with time zone NOT NULL,
-        updated_at timestamp with time zone NOT NULL
+        email         text NOT NULL UNIQUE,
+        name          text NOT NULL UNIQUE,
+        access_token  text NOT NULL UNIQUE,
+        refresh_token text NOT NULL UNIQUE
       );
     SQL
   end
