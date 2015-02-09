@@ -1,7 +1,7 @@
 class AddUuidOsspExtension < ActiveRecord::Migration
   def up
     execute <<-SQL.strip_heredoc
-      CREATE EXTENSION "uuid-ossp";
+      CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
     SQL
   end
 
