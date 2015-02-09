@@ -49,6 +49,7 @@ class SessionsController < ApplicationController
     login(user)
     redirect_to login_path(auth: "success")
   rescue
+    puts $@, $!
     return redirect_to login_path(auth: "failed")
   end
 
