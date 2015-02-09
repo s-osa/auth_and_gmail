@@ -32,11 +32,11 @@ class SessionsController < ApplicationController
   def oauth2
     return redirect_to root_path if user_signed_in?
 
-    return redirect_to login_path(auth: "failed") if session["oauth2_csrf"].nil?
-    return redirect_to login_path(auth: "failed") if session["oauth2_csrf"] != params["state"]
+    return redirect_to login_path(auth: "failed", pos: 1) if session["oauth2_csrf"].nil?
+    return redirect_to login_path(auth: "failed", pos: 2) if session["oauth2_csrf"] != params["state"]
 
     code = params["code"]
-    return redirect_to login_path(auth: "failed") if code.nil?
+    return redirect_to login_path(auth: "failed", pos: 3) if code.nil?
 
     tokens = exchange_code(code)
     access_token, refresh_token = tokens["access_token"], tokens["refresh_token"]
