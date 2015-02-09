@@ -1,4 +1,6 @@
 require "google/api_client"
+require "net/http"
+require "net/https"
 
 class SessionsController < ApplicationController
   skip_before_action :user_authenticate!, only: [:new, :oauth2]
