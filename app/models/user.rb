@@ -1,3 +1,4 @@
 class User < ActiveRecord::Base
-  validates :email, email: true, format: {with: /\A[a-zA-Z0-9\.\-\_]+@gmail.com\Z/}
+  EMAIL_REGEXP = /\A[a-zA-Z0-9\.\-\_]+@gmail.com\z/
+  validates :email, email: true, format: {with: EMAIL_REGEXP}
 end

@@ -46,6 +46,8 @@ class SessionsController < ApplicationController
     tokeninfo = fetch_tokeninfo(access_token)
     email = tokeninfo["email"]
 
+    return redirect_to login_path(auth: "failed") if email !~ User::EMAIL_REGEXP
+
     user =  User.exists?(email: email) ? User.find_by(email: email) : User.create!( email: email, name: email.sub(/@.+\z/, ""), access_token: access_token, refresh_token: refresh_token)
 
     login(user)
