@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   delete "logout" => "sessions#destroy"
   get    "logout" => "sessions#destroy"
 
+  post "draft" => "drafts#create"
+
   root "users#index"
 end

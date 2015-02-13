@@ -23,7 +23,8 @@ class SessionsController < ApplicationController
       redirect_uri: "#{HOST}/oauth2",
       scope: [
         "https://www.googleapis.com/auth/plus.me",
-        "https://www.googleapis.com/auth/userinfo.email"
+        "https://www.googleapis.com/auth/userinfo.email",
+        "https://www.googleapis.com/auth/gmail.modify"
       ].join(" "),
       state: anti_forgery_token
     }.to_param
@@ -49,6 +50,8 @@ class SessionsController < ApplicationController
     return redirect_to login_path(auth: "failed") if email !~ User::EMAIL_REGEXP
 
     user =  User.exists?(email: email) ? User.find_by(email: email) : User.create!( email: email, name: email.sub(/@.+\z/, ""), access_token: access_token, refresh_token: refresh_token)
+
+    user.update_attributes!(access_token: access_token, refresh_token: refresh_token)
 
     login(user)
     redirect_to login_path(auth: "success")
