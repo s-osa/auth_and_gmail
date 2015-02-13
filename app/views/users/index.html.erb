@@ -1,11 +1,14 @@
-<h1>Listing users</h1>
+<p>Hi, <%= current_user.email %>.</p>
+<span><%= link_to "Create Draft", draft_path, method: :post %></span>
+<span><%= link_to "Logout", logout_path, method: :delete %></span>
+
+<br />
+<br />
 
 <table>
   <thead>
     <tr>
       <th>Uuid</th>
-      <th>Name</th>
-      <th>Email</th>
     </tr>
   </thead>
 
@@ -13,12 +16,8 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.uuid %></td>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<p><%= link_to "Create Draft", draft_path, method: :post %></p>
-<p><%= link_to "Logout", logout_path, method: :delete %></p>
